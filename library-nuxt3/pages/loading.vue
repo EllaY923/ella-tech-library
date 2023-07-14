@@ -2,10 +2,8 @@
   <div class="container">
     <h2 class="title">LoadingIndicator</h2>
     <form class="content">
-      <span @click="isGlobalLoading = !isGlobalLoading">
-        Global LoadingIndicator
-      </span>
-      <span @click="isLoading = !isLoading">LoadingIndicator</span>
+      <span @click="setLoading()">Global LoadingIndicator</span>
+      <span @click="setLoading()">LoadingIndicator</span>
       <div class="section">
         <!-- <LoadingIndicatorGlobal v-if="state.isGlobalLoading" />
         <LoadingIndicator v-if="state.isLoading" /> -->
@@ -16,6 +14,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, reactive } from 'vue'
+import { definePageMeta } from '#imports'
 import LoadingIndicatorGlobal from '@/components/base/LoadingIndicatorGlobal.vue'
 import LoadingIndicator from '@/components/base/LoadingIndicator.vue'
 
@@ -32,7 +31,13 @@ export default defineComponent({
     const isGlobalLoading = ref(false)
     const isLoading = ref(false)
 
-    return { isGlobalLoading, isLoading }
+    const setLoading = (type = 'local') => {
+      type === 'local'
+        ? (isLoading.value = !isLoading.value)
+        : (isGlobalLoading.value = !isGlobalLoading.value)
+    }
+
+    return { isGlobalLoading, isLoading, setLoading }
   },
 })
 </script>
