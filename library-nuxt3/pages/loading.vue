@@ -2,8 +2,15 @@
   <div class="container">
     <h2 class="title">LoadingIndicator</h2>
     <form class="content">
+<<<<<<< HEAD
       <span @click="setLoading()">Global LoadingIndicator</span>
       <span @click="setLoading()">LoadingIndicator</span>
+=======
+      <span @click="setLoading('global')">
+        Global LoadingIndicator
+      </span>
+      <span @click="setLoading('local')">LoadingIndicator</span>
+>>>>>>> 4611b0f (tech : loading sample)
       <div class="section">
         <!-- <LoadingIndicatorGlobal v-if="state.isGlobalLoading" />
         <LoadingIndicator v-if="state.isLoading" /> -->
@@ -31,10 +38,12 @@ export default defineComponent({
     const isGlobalLoading = ref(false)
     const isLoading = ref(false)
 
-    const setLoading = (type = 'local') => {
-      type === 'local'
-        ? (isLoading.value = !isLoading.value)
-        : (isGlobalLoading.value = !isGlobalLoading.value)
+    const setLoading =(type = 'local')=> {
+      type === 'local' ?
+        isLoading.value = !isLoading.value
+        :
+        isGlobalLoading.value = !isGlobalLoading.value
+
     }
 
     return { isGlobalLoading, isLoading, setLoading }
